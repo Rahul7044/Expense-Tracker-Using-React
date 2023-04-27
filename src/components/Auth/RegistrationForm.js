@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./RegistrationForm.css";
+import { Link } from "react-router-dom";
 function RegistrationForm() {
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -44,11 +45,11 @@ function RegistrationForm() {
           //
         } else {
           res.json().then((data) => {
-            let errorMsg = "Authotication Failed";
+            let errorMessage = "Authentication Failed";
             if (data && data.error && data.error.message) {
-              errorMsg = data.error.message;
+              errorMessage = data.error.message;
             }
-            confirmPassword(errorMsg);
+            confirmPassword(errorMessage);
           });
         }
       });
@@ -90,6 +91,9 @@ function RegistrationForm() {
         </button>
         {isLoading && <p>Loading....</p>}
       </div>
+      <p>
+        Have an account? <Link to="/login">login</Link>
+      </p>
     </form>
   );
 }
